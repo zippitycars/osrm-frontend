@@ -30,7 +30,7 @@ module.exports = {
   },
   services: [{
     label: 'Car (fastest)',
-    path: 'http://34.209.197.202:5000/route/v1'
+    path: 'https://osrm-backend.zippitycars.com/route/v1'
   }],
   layer: [{
     'Mapbox Streets': streets,
