@@ -17,7 +17,7 @@ for (const filepath of [leafletOptions, debug]) {
   const ZOOM = process.env.OSRM_ZOOM || 13
   const LABEL = process.env.OSRM_LABEL || 'Car (fastest)'
   const CENTER = process.env.OSRM_CENTER || '42.357266, -71.0603766'
-  const BACKEND = process.env.OSRM_BACKEND || 'https://osrm-backend-2.zippitycars.com'
+  const BACKEND = process.env.OSRM_BACKEND || 'https://osrm-4x.zippity.cc'
   const LANGUAGE = process.env.OSRM_LANGUAGE || 'en'
 
   // Edit Leaflet Options

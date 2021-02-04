@@ -1,7 +1,7 @@
 FROM alpine:3.5
 
 # Enables customized options using environment variables
-ENV OSRM_BACKEND='https://osrm-backend-2.zippitycars.com'
+ENV OSRM_BACKEND='https://osrm-4x.zippity.cc'
 ENV OSRM_CENTER='42.357266,-71.0603766'
 ENV OSRM_ZOOM='13'
 ENV OSRM_LANGUAGE='en'
