@@ -48,5 +48,6 @@ module.exports = {
     three: satellite,
     four: osm,
     five: osm_de
-  }
+  },
+  style: 'mapbox://styles/zippitymatt/ck94m63ad48b31ipiwk8yuanf',
 };
