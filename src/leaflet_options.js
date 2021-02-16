@@ -2,22 +2,41 @@
 
 var L = require('leaflet');
 
-var streets = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiemlwcGl0eW1hdHQiLCJhIjoiY2s5NG0zNm5xMDJpcTNlbzU3NWQ2OHJpMSJ9.rHI1HHqAusHj4FJEGLU_Nw', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="https://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="https://mapbox.com/map-feedback/">Improve this map</a>'
+var mapboxTileURL = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+    mapboxAttribution = '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+    mapboxToken = 'pk.eyJ1IjoibXNsZWUiLCJhIjoiclpiTWV5SSJ9.P_h8r37vD8jpIH1A6i1VRg',
+    osmAttribution = '© <a href="https://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors';
+
+var streets = L.tileLayer(mapboxTileURL, {
+    attribution: mapboxAttribution,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: 'mapbox/streets-v11',
+    accessToken: mapboxToken
   }),
-  outdoors = L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiemlwcGl0eW1hdHQiLCJhIjoiY2s5NG0zNm5xMDJpcTNlbzU3NWQ2OHJpMSJ9.rHI1HHqAusHj4FJEGLU_Nw', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="https://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="https://mapbox.com/map-feedback/">Improve this map</a>'
+  outdoors = L.tileLayer(mapboxTileURL, {
+    attribution: mapboxAttribution,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: 'mapbox/outdoors-v11',
+    accessToken: mapboxToken
   }),
-  satellite = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}@2x.png?access_token=pk.eyJ1IjoiemlwcGl0eW1hdHQiLCJhIjoiY2s5NG0zNm5xMDJpcTNlbzU3NWQ2OHJpMSJ9.rHI1HHqAusHj4FJEGLU_Nw', {
-    attribution: '<a href="https://www.mapbox.com/about/maps">© Mapbox</a> <a href="https://openstreetmap.org/copyright">© OpenStreetMap</a> | <a href="https://mapbox.com/map-feedback/">Improve this map</a>'
+  satellite = L.tileLayer(mapboxTileURL, {
+    attribution: mapboxAttribution,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: 'mapbox/satellite-streets-v11',
+    accessToken: mapboxToken
   }),
   osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors'
+    attribution: osmAttribution,
   }),
-  osm_de = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright/en">OpenStreetMap</a> contributors'
+  osm_de = L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+    attribution: osmAttribution,
   }),
-  small_components = L.tileLayer('https://tools.geofabrik.de/osmi/tiles/routing_i/{z}/{x}/{y}.png', {});
+  hiking = L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {}),
+  bike = L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {}),
+  small_components = L.tileLayer('https://tools.geofabrik.de/osmi/tiles/routing/{z}/{x}/{y}.png', {});
 
 module.exports = {
   defaultState: {
@@ -40,6 +59,8 @@ module.exports = {
     'openstreetmap.de.org': osm_de
   }],
   overlay: {
+    'Hiking': hiking,
+    'Bike': bike,
     'Small Components': small_components
   },
   baselayer: {
